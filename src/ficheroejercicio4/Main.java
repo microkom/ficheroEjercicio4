@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ficheroejercicio4;
 
 import java.io.BufferedReader;
@@ -31,22 +26,46 @@ public class Main {
             fr = new FileReader(fileName);
             br = new BufferedReader(fr);
 
-            
             //lectura actual del archivo
-            String line;int number=0,total=0;
+            String line;
+            int number = 0, total = 0, mayor = 0, menor = 0, cont = 0;
             while ((line = br.readLine()) != null) {
-                number = Integer.parseInt(line);
-                try{
-                    total+=number;
-                }catch(NumberFormatException ex ){
-                number+=0;
+
+                try {
+                    number = Integer.parseInt(line);
+                    total += number;
+                    cont++;
+                    if (cont == 1) {
+                        menor = mayor = number;
+                    }
+
+                    mayor = highestN(mayor, number);
+                    menor = lowestN(menor, number);
+                    
+                } catch (NumberFormatException ex) {
+                    number = 0;
                 }
             }
-            System.out.println(total);
+            System.out.println(total + " " + mayor + " " + menor);
 
         } catch (Exception err) {
             System.out.println(err.getMessage());
         }
     }
-    
+
+    public static int highestN(int i, int j) {
+        if (i > j) {
+            return i;
+        } else {
+            return j;
+        }
+    }
+
+    public static int lowestN(int i, int j) {
+        if (i < j) {
+            return i;
+        } else {
+            return j;
+        }
+    }
 }
