@@ -41,15 +41,28 @@ public class Main {
 
                     mayor = highestN(mayor, number);
                     menor = lowestN(menor, number);
-                    
+
                 } catch (NumberFormatException ex) {
                     number = 0;
                 }
             }
-            System.out.println(total + " " + mayor + " " + menor);
+
+            System.out.println(
+                    "Total: " + total + " \n"
+                    + "Mayor: " + mayor + " \n"
+                    + "Menor: " + menor
+            );
 
         } catch (Exception err) {
             System.out.println(err.getMessage());
+        } finally {
+            try {
+                if (fr != null) {
+                    br.close();
+                }
+            } catch (IOException err) {
+                System.out.println(err.getMessage());
+            }
         }
     }
 
